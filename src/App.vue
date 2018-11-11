@@ -53,7 +53,10 @@ img {
   overflow: hidden;
   width: 100vw;
   height: 100vh;
-  display: flex;
+  #particles-js {
+    height: 100vh;
+    width: 100vw;
+  }
   .fade-enter-active,
   .fade-leave-active {
     transition: opacity 0.3s;
