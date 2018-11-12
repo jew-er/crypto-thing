@@ -194,7 +194,7 @@ export default {
       width: 100%;
       min-height: 400px;
       img {
-        width: 100%;
+        width: 90%;
         max-width: 250px;
         min-width: 0;
       }
