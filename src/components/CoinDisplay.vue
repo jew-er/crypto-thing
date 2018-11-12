@@ -134,6 +134,7 @@ export default {
       transform-style: preserve-3d;
       margin-bottom: 10px;
       width: 35%;
+      min-width: 300px;
     }
   }
 
@@ -181,6 +182,7 @@ export default {
     overflow-y: scroll;
     pointer-events: all;
     justify-content: flex-start;
+    padding-top: 30px;
     padding-left: 50px;
     padding-right: 50px;
     .return-btn {
@@ -190,8 +192,15 @@ export default {
     }
     .display-left {
       width: 100%;
+      min-height: 400px;
       img {
         width: 100%;
+        max-width: 250px;
+        min-width: 0;
+      }
+
+      p {
+        min-width: 200px;
       }
     }
     .display-right {

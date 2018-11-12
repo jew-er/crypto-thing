@@ -1,7 +1,7 @@
 <template>
     <div class="modal-box">
-        <button v-on:click="showModal" class="modal-btn">
-            What's this?
+        <button v-if="!show" v-on:click="showModal" class="modal-btn">
+            ?
         </button>
         <transition name="fade">
         <div v-on:click.self="showModal" v-if="show" class="modal-cover">
@@ -25,10 +25,10 @@
                 </p>
 
                 <p>
-                    This project was built over a weekend with <a href="https://vuejs.org/">Vue</a> 
-                    it serves as a great introduction to Vuex and working with a global store and vue-router.
-
+                    This project was built over a weekend with <a href="https://vuejs.org/">Vue.</a> 
+                    It serves as a great introduction to Vuex and working with a global store and vue-router.
                 </p>
+                <button v-on:click="showModal"> X </button>
             </div>
         </div>
         </transition>
@@ -59,20 +59,25 @@ export default {
   display: flex;
   pointer-events: none;
   z-index: 4;
+  box-sizing: border-box;
 
   .modal-btn {
     color: white;
     transition: 0.2s ease-in;
     border: 1px solid white;
-    padding: 15px;
+    padding: 10px;
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 5px;
+    right: 25px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-sizing: border-box;
     user-select: none;
     -moz-user-select: none;
-    border-radius: 10px;
     background: transparent;
     pointer-events: all;
+    z-index: 5;
     cursor: pointer;
     &:hover {
       color: mediumspringgreen;
@@ -83,7 +88,11 @@ export default {
   .modal-cover {
     width: 100%;
     height: 100%;
+    position: absolute;
+    box-sizing: border-box;
     display: flex;
+    top: 0;
+    left: 0;
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.4);
@@ -92,7 +101,7 @@ export default {
     .modal-content {
       background: white;
       min-height: 500px;
-      width: 500px;
+      width: 350px;
       color: black;
       border-radius: 15px 15px 0px 0px;
       z-index: 5;
@@ -119,6 +128,20 @@ export default {
       p {
         font-size: 0.9em;
         padding-top: 30px;
+      }
+
+      button {
+        background: springgreen;
+        color: white;
+        border: none;
+        box-sizing: border-box;
+        border-radius: 100%;
+        width: 40px;
+        height: 40px;
+        user-select: none;
+        -webkit-user-select: none;
+        position: absolute;
+        cursor: pointer;
       }
     }
   }

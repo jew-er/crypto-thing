@@ -42,7 +42,7 @@ export default {
   max-height: 100%;
   position: absolute;
   pointer-events: none;
-  top: 0;
+  bottom: 0;
   .content {
     position: absolute;
     top: 0;
