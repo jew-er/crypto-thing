@@ -10,7 +10,7 @@
               <h3>{{getData.name}}</h3>
               <div class="display-rankbox">{{'Rank '+getData.rank}}</div>
               <p>{{getData.description}}</p>
-              <a><svg height="80px" style="enable-background:new 0 0 80 80;"
+              <a :href="getData.website"><svg height="80px" style="enable-background:new 0 0 80 80;"
                         version="1.1" viewBox="0 0 80 80" width="80px" xml:space="preserve" 
                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g><path d="M29.298,63.471l-4.048,4.02c-3.509,3.478-9.216,3.481-12.723,0c-1.686-1.673-2.612-3.895-2.612-6.257
