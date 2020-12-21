@@ -5,10 +5,10 @@
         <div class="link-wrapper" v-for="(item,key) in getData" :key="key">
           <router-link :to="'/'+item.id">
             <coinLink :isPositive="item.percent_change_24h>0">
-              <template slot="linkimg"><img width="40%" :src="'/static/'+item.url+'_large_logo.png'" /></template>
+              <template slot="linkimg"><img width="40%" :src="'/static/'+item.slug+'_large_logo.png'" /></template>
               <template slot="linktitle">{{item.name}}</template>
-              <template slot="linkprice">{{ '$'+Number(item.price_usd).toFixed(2) }}</template>
-              <template slot="linkchange">{{item.percent_change_24h+'%'}}</template>
+              <template slot="linkprice">{{ '$'+Number(item.quote.USD.price).toFixed(2) }}</template>
+              <template slot="linkchange">{{item.quote.USD.percent_change_24h.toFixed(2)+'%'}}</template>
             </coinLink>
           </router-link>
         </div>

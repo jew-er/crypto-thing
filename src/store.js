@@ -4,7 +4,7 @@ import axios from "axios";
 
 Vue.use(Vuex);
 const bonusData = require("./crypto-extrainfo.json");
-const URL = "https://api.coinmarketcap.com/v1/ticker/?limit=10";
+const URL = "https://yd5yvizovl.execute-api.us-east-1.amazonaws.com/prod/";
 
 export default new Vuex.Store({
   state: {
@@ -21,11 +21,11 @@ export default new Vuex.Store({
     addMoreData(state, bonusData) {
       state.apidata.forEach(item => {
         if (bonusData[item.id]) {
-          item.description = bonusData[item.id].description;
-          item.website = bonusData[item.id].website;
-          item.website = bonusData[item.id].website;
+          item.description = bonusData[item.slug].description;
+          item.website = bonusData[item.slug].website;
+          item.website = bonusData[item.slug].website;
           item.hasData = true;
-          item.url = item.id;
+          item.url = item.slug;
         } else {
           item.hasData = "false";
           item.url = "undefined";
@@ -36,7 +36,10 @@ export default new Vuex.Store({
   actions: {
     loadData({ commit }) {
       axios.get(URL).then(response => {
-        commit("updateData", response.data);
+        const data = JSON.parse(response.data.body).data.filter(
+          x => bonusData[x.slug] !== undefined
+        );
+        commit("updateData", data);
         commit("changeLoadingState", false);
         commit("addMoreData", bonusData);
       });

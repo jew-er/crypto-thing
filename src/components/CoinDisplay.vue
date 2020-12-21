@@ -6,7 +6,7 @@
               <p>return</p>
             </router-link>
             <div class="display-left">
-              <img :src="'/static/'+getData.url+'_large_logo.png'" />
+              <img :src="'/static/'+getData.slug+'_large_logo.png'" />
               <h3>{{getData.name}}</h3>
               <div class="display-rankbox">{{'Rank '+getData.rank}}</div>
               <p>{{getData.description}}</p>
@@ -28,17 +28,17 @@
             <div class="display-right-box">
                 <p> Current Price </p>
                 <div class="display-row">
-                <span class="display-numbers"> ${{Number(getData.price_usd).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span>
-                <span :class="{'display-increase': isPositive}" class="display-percent" > ({{getData.percent_change_24h}}%) </span>
+                <span class="display-numbers"> ${{Number(getData.quote.USD.price).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span>
+                <span :class="{'display-increase': isPositive}" class="display-percent" > ({{getData.quote.USD.percent_change_24h}}%) </span>
                 </div>
             </div>
             <div class="display-right-box">
                 <p> Market Total Supply </p>
-                <span class="display-numbers">{{getData.total_supply.replace(/\B(?=(\d{3})+(?!\d))/g, ",")+' '+ getData.symbol}}</span>
+                <span class="display-numbers">{{getData.max_supply.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+' '+ getData.symbol}}</span>
             </div>
             <div class="display-right-box">
                 <p>Market Cap</p>
-                <span class="display-numbers">${{getData.market_cap_usd.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span>           
+                <span class="display-numbers">${{getData.quote.USD.market_cap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span>           
             </div>
         </div>
      </div>
@@ -49,8 +49,8 @@ export default {
   name: "coinDisplay",
   computed: {
     getData: function() {
-      let y = this.$route.params.id;
-      return this.$store.getters.returnData.find(x => x.id == y) || "error";
+      let y = +this.$route.params.id;
+      return this.$store.getters.returnData.find(x => x.id === y) || "error";
     },
     isPositive: function() {
       return this.getData.percent_change_24h >= 0;
